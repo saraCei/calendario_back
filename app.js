@@ -23,8 +23,8 @@ app.use(express.static(__dirname+'/public'));
 app.use(express.json())
 
 // Rutas
-app.use('/api/auth',require('./routes/authRoute'))
-//TODO. calendarRoute
+app.use('/api/auth',require('./routes/authRoute'));
+app.use('/api/events',require('./routes/calendarRoute'));
 
 // app.get('/',(req,res)=>{
 //     //res.send('Hola mundo')

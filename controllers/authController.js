@@ -53,7 +53,7 @@ const createUser=async(req,res)=>{
 // Login User
 const loginUser=async (req,res)=>{
 
-    console.log('req.body: ', req.body)
+    // console.log('req.body: ', req.body)
 
     const {email, password} = req.body
 
@@ -109,7 +109,8 @@ const renewToken=async(req,res)=>{
 
     const {uid,name}=req
 
-    const token = JWTGenerator(uid,name)
+    // Generar un nuevo token
+    const token=await JWTGenerator(uid,name)
 
     res.json({
         ok:true,
