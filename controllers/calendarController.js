@@ -1,34 +1,33 @@
 const Event=require('../models/EventModel')
 
-const getEvents = (req, res) =>{
+const getEvents = async(req, res) =>{
 
-    const events=async(req,res)=>{
-
-        const events=await Event.find().populate('user','name email')
+    const events=await Event.find().populate('user','name email')
         
     return res.status(200).json({
         ok:true,
         msg:'recoger eventos',
         events
     })
-    }
-
-
 }
+
 
 
 const createEvent = async(req, res) =>{
 
     const event = new Event(req.body)
+    //console.log(req)
 
     try {
         event.user=req.uid
         const eventSaved=await event.save()
 
+        //console.log(event)
+
         return res.status(201).json({
             ok:true,
             msg:'creando evento',
-            eventSaved
+            event:eventSaved
         })
 
     } catch (error) {
@@ -49,7 +48,7 @@ const updateEvent = async(req, res) =>{
 
     try {
         const event=await Event.findById(eventId)
-
+        console.log(event)
         if(!event){
             return res.status(404).json({
                 ok:false,

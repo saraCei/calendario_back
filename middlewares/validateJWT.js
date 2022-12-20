@@ -14,8 +14,8 @@ const validateJWT=(req,res,next)=>{
     try{
 
         const payload=jwt.verify(token, process.env.JWT_SECRET_KEY)
-        //console.log(payload)
-        req.ui=payload.uid
+        console.log(payload)
+        req.uid=payload.uid
         req.name=payload.name
 
     } catch(error){
